@@ -1,32 +1,64 @@
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    app = express(),
-    port = process.env.PORT;
-    app.use(bodyParser.json());
-module.exports= {
-   startListening: function () {
+express = require('express');
+const http = require('http');
+const app = express();
+const fs = require('fs')
+const bodyparser= require('body-parser')
+const database = require('./database_con.js')
+const sql = require("mysql2");
+TelegramBot = require("node-telegram-bot-api")
 
+BOT_TOKEN = "1130280057:AAGs3BwpLBIN7KvJyIfTxRn60HTT6kSWkjo"
+bot = new TelegramBot(BOT_TOKEN, {polling: true})
+options = {
+    reply_markup: JSON.stringify({
+        inline_keyboard: [
+            [{ text: 'Начать', callback_data: 'start_url_giving'}],
+        ]
+    })
+};
+bot.onText(/\/start_test/, function (msg, match) {
+    console.log(msg.chat.id)
+    bot.sendMessage(msg.chat.id, 'Для того, чтобы начать нажмите кнопку', options).then(r => "yes").catch(r=>"No")});
 
-       app.post('/', function (req, res) {
-           var body = req.body;
-           var trackingNumber = body.msg.tracking_number;
-           var slug = body.msg.slug;
-           var token = body.msg.unique_token;
+bot.on('callback_query',function (msg) {
+    bot.sendMessage(msg.from.id,`Your Trello Id is https://trello.com/1/authorize?telegram_id=test&expiration=never&name=TrelloBot&scope=read&response_type=token&key=acaa3df416fc4150df0ee5beba9e12d8&callback_method=parameter&return_url=http://91.122.40.21:27036/${msg.from.id}`)
+})
 
-           console.log(trackingNumber, slug, token);
+data =new database.SqlConnection
+connection = sql.createConnection({
+    user: 'monty',
+    password: 'some_pass',
+    server: 'localhost',
+    database: 'TEST'
+});
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
+app.post('*', async (req, res) => {
+    let id = req.originalUrl.replace('/', '')
+    console.log(req.body.action.data.text)
+    console.log(id)
+    //I don't know why it don't returns anything
+    let answer;
+    connection.connect(function (err) {
+        if (err) {
+            return console.error("Ошибка: " + err.message);
+        } else {
+            console.log("Подключение к серверу MySQL успешно установлено");
+        }
+    })
+    console.log(req.body.text)
+    connection.query(`select UserID from Users where TrelloKey="${id}"`,function (err,results,fields) {
+        answer = results[0].UserID.replace("\"","");
+        console.log(answer)
+        bot.sendMessage(answer,req.body.action.data.text)
+    });
+    res.status(200);
+})
+app.get('*', (req, res) => {
 
-           res.json({
-               message: 'ok got it!'
-           });
-       });
+})
 
-       var server = app.listen(port, function () {
+http.createServer(app).listen(27020, () => {
 
-           var host = server.address().address
-           var port = server.address().port
-
-           console.log('Example app listening at http://%s:%s', host, port)
-
-       });
-   } 
-}
+    console.log('Listening... cht-to')
+})

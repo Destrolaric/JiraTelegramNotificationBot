@@ -1,1 +1,3 @@
-My first experience with node.js and Http request, please don't beat me for mistakes
+My first experience with node.js and Http requests, please don't beat me for mistakes/
+#So what it did's#
+Well.. it's Notification bot maded on trello webhook, supported by some base

@@ -6,7 +6,7 @@ const database = require('./database_con.js')
 const sql = require("mysql2");
 TelegramBot = require("node-telegram-bot-api")
 
-BOT_TOKEN = "1130280057:AAGs3BwpLBIN7KvJyIfTxRn60HTT6kSWkjo"
+BOT_TOKEN = "Some-Token"
 bot = new TelegramBot(BOT_TOKEN, {polling: true})
 options = {
     reply_markup: JSON.stringify({

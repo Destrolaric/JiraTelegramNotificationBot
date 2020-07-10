@@ -21,7 +21,7 @@ bot.onText(/\/start_test/, function (msg) {
 });
 
 bot.on('callback_query', function (msg) {
-    bot.sendMessage(msg.from.id, `Your Trello Id is https://trello.com/1/authorize?telegram_id=test&expiration=never&name=TrelloBot&scope=read&response_type=token&key=acaa3df416fc4150df0ee5beba9e12d8&callback_method=parameter&return_url=http://91.122.40.21:27036/${msg.from.id}`)
+    bot.sendMessage(msg.from.id, `Your Trello Id is https://trello.com/1/authorize?telegram_id=test&expiration=never&name=TrelloBot&scope=read&response_type=token&key=acaa3df416fc4150df0ee5beba9e12d8&callback_method=parameter&return_url=http://111.111.11.11:27036/${msg.from.id}`)
 })
 
 data = new database.SqlConnection

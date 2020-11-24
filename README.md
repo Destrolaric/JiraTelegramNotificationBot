@@ -8,5 +8,5 @@
   <h2>
   <strong>How to launch?</strong>
   </h2>
-   you need to launch 2 separate nodejs files which will host specific webpages. Also you need to insert your trello token for access
+   You need to launch 2 separate nodejs files which will host specific webpages. Also you need to insert your trello token for access. Needed files are in the launch.sh, which is, surprise, doesn't work
 </p>

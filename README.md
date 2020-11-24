@@ -3,8 +3,8 @@
 </h1>
 <p>
   My first experience with node.js and Http requests, please don't beat me for mistakes
-  <strong>So what it does?</strong>
-  Well.. it's Notification bot maded on trello webhook, supported by some base functionality
+  <h2>So what it does?</h2>
+  Well.. it's Notification bot maded on trello webhooks. Sends you notifications from your account. May be annoying if you have large quantity of boards
   <h2>
   <strong>How to launch?</strong>
   </h2>

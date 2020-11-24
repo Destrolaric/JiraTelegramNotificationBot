@@ -1,5 +1,5 @@
 <h1>
-  please don't use that it's prototype
+  please don't use that is the prototype
 </h1>
 <p>
   My first experience with node.js and Http requests, please don't beat me for mistakes

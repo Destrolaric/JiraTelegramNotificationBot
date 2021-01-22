@@ -10,3 +10,9 @@
   </h2>
    You need to launch 2 separate nodejs files which will host specific webpages. Also you need to insert your trello token for access. Needed files are in the launch.sh, which is, surprise, doesn't work
 </p>
+<h2> 
+  If someone wants to use this
+</h2>
+<p>
+  Please sanitize sql input and remove hardcodded BD
+</p>

@@ -14,5 +14,5 @@
   If someone wants to use this
 </h2>
 <p>
-  Please sanitize sql input and remove hardcodded BD
+  Please sanitize sql input and remove hardcodded DB
 </p>
